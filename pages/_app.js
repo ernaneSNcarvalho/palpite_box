@@ -1,7 +1,7 @@
-import React, { Component } from 'react'
+import React from 'react'
 import '../css/style.css'
 
-const MyApp = ({component, pageProps}) => {
+const MyApp = ({Component, pageProps}) => {
     return (
         <div>
             <h1>MyAPP</h1>
