@@ -24,7 +24,7 @@ const Pesquisa = () => {
             <div className='w-1/5 mx-auto'>
                 <label className='font-bold'>Seu nome:</label>
                 <input className='p-4 block shadow bg-blue-100 my-2 rounded' type="text" />
-                <button className='bg-blue-400 px-6 py-4 font-bold rounded-lg shadow-lg hover:shadow' onclick={save}>Salvar</button>
+                <button className='bg-blue-400 px-6 py-4 font-bold rounded-lg shadow-lg hover:shadow' onClick={save}>Salvar</button>
             </div>
         </div>
     )
