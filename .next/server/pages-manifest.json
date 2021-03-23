@@ -3,6 +3,5 @@
   "/_error": "pages/_error.js",
   "/_document": "pages/_document.js",
   "/pesquisa": "pages/pesquisa.js",
-  "/": "pages/index.js",
-  "/api/get-promo": "pages/api/get-promo.js"
+  "/": "pages/index.js"
 }
