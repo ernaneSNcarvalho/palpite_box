@@ -1,9 +1,8 @@
 import { GoogleSpreadsheet } from "google-spreadsheet"
-import credentials from "../../credentials.json"
 import moment from 'moment'
-const doc = new GoogleSpreadsheet(
-  "1ieTUEtcdPPVF0-vgiD7eV-7jeRcBVtiqCkLBjMsHUTo"
-);
+import { fromBase64 } from '../../utils/base64'
+
+const doc = new GoogleSpreadsheet(process.env.SHEET_DOC_ID );
 
 const genCupom = () => {
   const code = parseInt(moment().format('YYMMDDHHmmssSSS')).toString(16).toUpperCase()
@@ -13,7 +12,10 @@ const genCupom = () => {
 export default async(req, res) => {
     
 try{
-    await doc.useServiceAccountAuth(credentials)
+  await doc.useServiceAccountAuth({
+    client_email: process.env.SHEET_CLIENT_EMAIL,
+    private_key: process.env.SHEET_PRIVATE_KEY
+  })
     await doc.loadInfo()
     const sheet = doc.sheetsByIndex[1]
     const data = JSON.parse(req.body)
@@ -36,12 +38,16 @@ try{
         Nome: data.Nome, 
         Email: data.Email, 
         Whatsapp: data.Whatsapp,
-        Nota: 5,
+        Nota: parseInt(data.Nota),
         'Data Preenchimento' : moment().format('DD/MM/YYYY HH:mm:ss'),
         Cupom,
         Promo
     })
-    res.end(req.body)
+    res.end(JSON.stringify({
+      showCupom: Cupom !== '',
+      Cupom,
+      Promo
+    }))
     }catch(err){
     console.log(err)
     res.end('error')
