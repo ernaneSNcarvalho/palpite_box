@@ -33,6 +33,11 @@
       "static/chunks/main.js",
       "static/chunks/webpack.js",
       "static/chunks/pages/pesquisa.js"
+    ],
+    "/sobre": [
+      "static/chunks/main.js",
+      "static/chunks/webpack.js",
+      "static/chunks/pages/sobre.js"
     ]
   },
   "ampFirstPages": []
